@@ -1,5 +1,6 @@
 package com.cursomc.resources;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoriaResource {
 	
 	@GetMapping("/")
-	public String listar() {
-		return "ok";
+	public ResponseEntity<?> listar() {
+		return ResponseEntity.ok("ok");
 	}
 
 }
