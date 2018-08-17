@@ -11,8 +11,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cursomc.entity.Categoria;
+import com.cursomc.entity.Cidade;
+import com.cursomc.entity.Estado;
 import com.cursomc.entity.Produto;
 import com.cursomc.repository.CategoriaRepository;
+import com.cursomc.repository.CidadeRepository;
+import com.cursomc.repository.EstadoRepository;
 import com.cursomc.repository.ProdutoRepository;
 
 @SpringBootApplication
@@ -23,6 +27,12 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -37,7 +47,7 @@ public class CursomcApplication implements CommandLineRunner {
 		Produto p2 = new Produto(null, "Impressora", new BigDecimal(800));
 		Produto p3 = new Produto(null, "Mouse", new BigDecimal(80));
 		
-		cat1.getProdutos().addAll(Arrays.asList(p2, p1));
+		cat1.getProdutos().addAll(Arrays.asList(p2, p1, p3));
 		
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 
@@ -45,8 +55,22 @@ public class CursomcApplication implements CommandLineRunner {
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
-
 		repository.saveAll(Arrays.asList(cat2, cat1));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		Cidade cid1 = new Cidade(null, "Uberlãndia", est1);
+		Cidade cid2 = new Cidade(null, "São Paulo", est2);
+		Cidade cid3 = new Cidade(null, "Campinas", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(cid1));
+		est1.getCidades().addAll(Arrays.asList(cid2, cid3));
+		
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
+		
 	}
 }
