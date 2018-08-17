@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cursomc.entity.Categoria;
+import com.cursomc.exception.ObjectNotFoundException;
 import com.cursomc.repository.CategoriaRepository;
-import com.cursomc.service.CategoriaService;
 
 @RestController
 @RequestMapping("/categorias")
@@ -20,8 +20,8 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaRepository CategoriaRepository;
 	
-	@Autowired
-	private CategoriaService CategoriaService;
+	//@Autowired
+	//private CategoriaService CategoriaService;
 	
 	@GetMapping("/")
 	public ResponseEntity<?> listar() {
@@ -31,7 +31,7 @@ public class CategoriaResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPrId(@PathVariable Long id) {
 		Optional<Categoria> categoria = CategoriaRepository.findById(id);
-		return ResponseEntity.ok().body(categoria.orElse(null));
+		return ResponseEntity.ok().body(categoria.orElseThrow(() ->new ObjectNotFoundException("Objecto não encontrado id:" +id + " type:" + Categoria.class.getName())));
 		
 	}
 

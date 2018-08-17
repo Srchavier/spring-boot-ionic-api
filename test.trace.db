@@ -88,3 +88,15 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-197]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
 	... 85 more
+2018-08-15 22:40:34 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM PRODUTO_CATEGORIA PRODUTO CATEGORIA[*]"; SQL statement:
+SELECT * FROM PRODUTO_CATEGORIA PRODUTO CATEGORIA [42000-197]
+2018-08-15 22:48:13 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGORIA" not found; SQL statement:
+insert into categoria (id, nome) values (null, ?) [42102-197]
+2018-08-15 22:56:57 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGORIA" not found; SQL statement:
+insert into categoria (id, nome) values (null, ?) [42102-197]
+2018-08-15 23:46:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGORIA" not found; SQL statement:
+insert into categoria (id, nome) values (null, ?) [42102-197]

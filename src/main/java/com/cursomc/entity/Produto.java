@@ -1,6 +1,7 @@
 package com.cursomc.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,43 +10,43 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-/**
- * @author eduar
- *
- */
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable {
+@Table(name = "produto")
+public class Produto implements Serializable {
 
-	private static final long serialVersionUID = -6067337017843697716L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
-	@Size(max = 255)
 	private String nome;
 
-	@JsonManagedReference
-	@ManyToMany(mappedBy="categorias")
-	private Set<Produto> produtos = new HashSet<>(0);
+	@Column
+	private BigDecimal valor;
 
-	public Categoria() {
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private Set<Categoria> categorias = new HashSet<>(0);
 
+	public Produto() {
 	}
 
-	public Categoria(Long id, String nome) {
+	public Produto(Long id, String nome, BigDecimal valor) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.valor = valor;
 	}
 
 	public Long getId() {
@@ -64,12 +65,20 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Produto> getProdutos() {
-		return produtos;
+	public BigDecimal getValor() {
+		return valor;
 	}
 
-	public void setProdutos(Set<Produto> produtos) {
-		this.produtos = produtos;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
@@ -89,7 +98,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -103,6 +112,6 @@ public class Categoria implements Serializable {
 		return true;
 	}
 
-
+	
 
 }
