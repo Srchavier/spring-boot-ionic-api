@@ -16,6 +16,7 @@ import com.cursomc.entity.Cidade;
 import com.cursomc.entity.Cliente;
 import com.cursomc.entity.Endereco;
 import com.cursomc.entity.Estado;
+import com.cursomc.entity.ItemPedido;
 import com.cursomc.entity.Pagamento;
 import com.cursomc.entity.PagamentoComBoleto;
 import com.cursomc.entity.PagamentoComCartao;
@@ -28,6 +29,7 @@ import com.cursomc.repository.CidadeRepository;
 import com.cursomc.repository.ClienteRepository;
 import com.cursomc.repository.EnderecoRepository;
 import com.cursomc.repository.EstadoRepository;
+import com.cursomc.repository.ItemPedidoRepository;
 import com.cursomc.repository.PagamentoRepository;
 import com.cursomc.repository.PedidoRepository;
 import com.cursomc.repository.ProdutoRepository;
@@ -58,6 +60,9 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -116,13 +121,26 @@ public class CursomcApplication implements CommandLineRunner {
 		Pagamento pag1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pag1);
 
-		Pagamento pag2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2,
-				null, LocalDate.parse("2019-01-01"));
+		Pagamento pag2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, null,
+				LocalDate.parse("2019-01-01"));
 		ped2.setPagamento(pag2);
 
 		clint1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
+
+		ItemPedido item1 = new ItemPedido(ped1, p1, new BigDecimal(0), 1, new BigDecimal(2000));
+		ItemPedido item2 = new ItemPedido(ped1, p3, new BigDecimal(0), 2, new BigDecimal(80));
+		ItemPedido item3 = new ItemPedido(ped2, p2, new BigDecimal(100), 1, new BigDecimal(800));
+
+		ped1.getItens().addAll(Arrays.asList(item1, item2));
+		ped2.getItens().addAll(Arrays.asList(item3));
+
+		p1.getItens().addAll(Arrays.asList(item1));
+		p2.getItens().addAll(Arrays.asList(item3));
+		p3.getItens().addAll(Arrays.asList(item2));
+
+		itemPedidoRepository.saveAll(Arrays.asList(item1, item2, item3));
 	}
 }
