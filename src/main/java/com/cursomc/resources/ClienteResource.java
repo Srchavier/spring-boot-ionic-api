@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cursomc.entity.Categoria;
 import com.cursomc.entity.Cliente;
-import com.cursomc.exception.ObjectNotFoundException;
 import com.cursomc.repository.ClienteRepository;
+import com.cursomc.service.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/clientes")

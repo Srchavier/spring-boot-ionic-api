@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cursomc.entity.Categoria;
-import com.cursomc.entity.ItemPedido;
 import com.cursomc.entity.Pedido;
-import com.cursomc.exception.ObjectNotFoundException;
-import com.cursomc.repository.ItemPedidoRepository;
 import com.cursomc.repository.PedidoRepository;
+import com.cursomc.service.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/pedidos")
