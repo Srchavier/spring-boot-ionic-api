@@ -2,8 +2,13 @@ package com.cursomc.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.cursomc.enums.EstadoPagamento;
 
+@Entity
+@Table(name = "pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
 
 	private static final long serialVersionUID = 1L;

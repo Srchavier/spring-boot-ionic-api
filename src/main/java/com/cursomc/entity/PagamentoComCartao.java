@@ -1,7 +1,12 @@
 package com.cursomc.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.cursomc.enums.EstadoPagamento;
 
+@Entity
+@Table(name = "pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
