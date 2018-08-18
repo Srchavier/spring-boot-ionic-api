@@ -1,7 +1,7 @@
 package com.cursomc.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ public class Pedido implements Serializable {
 	private Long id;
 
 	@Column
-	private LocalDate instance;
+	private LocalDateTime instance;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
@@ -41,11 +41,10 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, LocalDate instance, Pagamento pagamento, Endereco enderecoDeEntrega, Cliente cliente) {
+	public Pedido(Long id, LocalDateTime instance, Endereco enderecoDeEntrega, Cliente cliente) {
 		super();
 		this.id = id;
 		this.instance = instance;
-		this.pagamento = pagamento;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 		this.cliente = cliente;
 	}
@@ -58,11 +57,11 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDate getInstance() {
+	public LocalDateTime getInstance() {
 		return instance;
 	}
 
-	public void setInstance(LocalDate instance) {
+	public void setInstance(LocalDateTime instance) {
 		this.instance = instance;
 	}
 

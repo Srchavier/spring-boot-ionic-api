@@ -1,6 +1,9 @@
 package com.cursomc;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +16,20 @@ import com.cursomc.entity.Cidade;
 import com.cursomc.entity.Cliente;
 import com.cursomc.entity.Endereco;
 import com.cursomc.entity.Estado;
+import com.cursomc.entity.Pagamento;
+import com.cursomc.entity.PagamentoComBoleto;
+import com.cursomc.entity.PagamentoComCartao;
+import com.cursomc.entity.Pedido;
 import com.cursomc.entity.Produto;
+import com.cursomc.enums.EstadoPagamento;
 import com.cursomc.enums.TipoCliente;
 import com.cursomc.repository.CategoriaRepository;
 import com.cursomc.repository.CidadeRepository;
 import com.cursomc.repository.ClienteRepository;
 import com.cursomc.repository.EnderecoRepository;
 import com.cursomc.repository.EstadoRepository;
+import com.cursomc.repository.PagamentoRepository;
+import com.cursomc.repository.PedidoRepository;
 import com.cursomc.repository.ProdutoRepository;
 
 @SpringBootApplication
@@ -36,12 +46,18 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private EstadoRepository estadoRepository;
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+
+	@Autowired
+	private PedidoRepository pedidoRepository;
+
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -49,6 +65,9 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		DateTimeFormatter aFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 
@@ -87,8 +106,23 @@ public class CursomcApplication implements CommandLineRunner {
 		Endereco e2 = new Endereco(null, "Avenida Matos", 105, "sala 800", "Centro", "389232", clint1, cid2);
 
 		clint1.getEnderecos().addAll(Arrays.asList(e1, e2));
-		
+
 		clienteRepository.save(clint1);
-		enderecoRepository.saveAll(Arrays.asList(e1,e2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
+		Pedido ped1 = new Pedido(null, LocalDateTime.parse("01-08-2018 04:24", aFormatter), e1, clint1);
+		Pedido ped2 = new Pedido(null, LocalDateTime.parse("10-10-2018 04:24", aFormatter), e2, clint1);
+
+		Pagamento pag1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pag1);
+
+		Pagamento pag2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2,
+				null, LocalDate.parse("2019-01-01"));
+		ped2.setPagamento(pag2);
+
+		clint1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
 	}
 }
