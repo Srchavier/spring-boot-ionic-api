@@ -21,7 +21,6 @@ public class ClienteResource {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
-	
 	@GetMapping("/")
 	public ResponseEntity<?> listar() {
 		return ResponseEntity.ok().body(clienteRepository.findAll());

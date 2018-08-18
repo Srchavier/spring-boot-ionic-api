@@ -10,28 +10,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cursomc.entity.Categoria;
+import com.cursomc.entity.ItemPedido;
+import com.cursomc.entity.Pedido;
 import com.cursomc.exception.ObjectNotFoundException;
-import com.cursomc.repository.CategoriaRepository;
+import com.cursomc.repository.ItemPedidoRepository;
+import com.cursomc.repository.PedidoRepository;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResource {
+@RequestMapping("/pedidos")
+public class ItemPedidoResource {
 
 	@Autowired
-	private CategoriaRepository CategoriaRepository;
+	private PedidoRepository pedidoRepository;
 
 	// @Autowired
 	// private CategoriaService CategoriaService;
 
 	@GetMapping("/")
 	public ResponseEntity<?> listar() {
-		return ResponseEntity.ok().body(CategoriaRepository.findAll());
+		return ResponseEntity.ok().body(pedidoRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPrId(@PathVariable Long id) {
-		Optional<Categoria> categoria = CategoriaRepository.findById(id);
-		return ResponseEntity.ok().body(categoria.orElseThrow(() -> new ObjectNotFoundException(
+		Optional<Pedido> itemPedido = pedidoRepository.findById(id);
+		return ResponseEntity.ok().body(itemPedido.orElseThrow(() -> new ObjectNotFoundException(
 				"Objecto não encontrado id:" + id + " type:" + Categoria.class.getName())));
 
 	}
