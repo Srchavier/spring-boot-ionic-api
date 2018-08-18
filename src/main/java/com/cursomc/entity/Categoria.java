@@ -13,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 /**
  * @author eduar
  *
@@ -33,7 +31,6 @@ public class Categoria implements Serializable {
 	@Size(max = 255)
 	private String nome;
 
-	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private Set<Produto> produtos = new HashSet<>(0);
 
