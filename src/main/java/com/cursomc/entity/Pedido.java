@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,6 +31,7 @@ public class Pedido implements Serializable {
 	private Long id;
 
 	@Column
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime instance;
 
 	@JsonManagedReference
