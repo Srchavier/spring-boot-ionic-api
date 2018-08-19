@@ -9,4 +9,8 @@ public class CategoriaBuilder {
 		return new CategoriaDTO(categoria.getId(), categoria.getNome());
 	}
 
+	public Categoria builderCategoria(CategoriaDTO categoriaDto) {
+		return new Categoria(categoriaDto.getId(), categoriaDto.getNome());
+	}
+
 }

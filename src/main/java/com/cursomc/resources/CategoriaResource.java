@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.cursomc.builder.CategoriaBuilder;
 import com.cursomc.dto.CategoriaDTO;
 import com.cursomc.model.Categoria;
 import com.cursomc.service.CategoriaService;
@@ -26,7 +27,6 @@ import com.cursomc.service.CategoriaService;
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaResource {
-
 
 	@Autowired
 	private CategoriaService categoriaService;
@@ -42,32 +42,31 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(categoria);
 
 	}
-	
+
 	@GetMapping("/page")
 	public ResponseEntity<Page<CategoriaDTO>> listarComPaginacao(
-			@RequestParam (value ="page", defaultValue = "0") Integer pagina, 
-			@RequestParam (value ="line", defaultValue = "24") Integer numeroLinhas, 
-			@RequestParam (value ="orderBy", defaultValue = "nome") String ordem, 
-			@RequestParam (value ="direction", defaultValue = "ASC") String direcao) {
-		
-		return ResponseEntity.ok().body(categoriaService.listaComPaginacao(pagina, numeroLinhas, ordem , direcao));
+			@RequestParam(value = "page", defaultValue = "0") Integer pagina,
+			@RequestParam(value = "line", defaultValue = "24") Integer numeroLinhas,
+			@RequestParam(value = "orderBy", defaultValue = "nome") String ordem,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direcao) {
+
+		return ResponseEntity.ok().body(categoriaService.listaComPaginacao(pagina, numeroLinhas, ordem, direcao));
 	}
 
 	@PostMapping
-	public ResponseEntity<Categoria> salvar(@RequestBody @Valid Categoria categoria) {
-		Categoria cat = categoriaService.salvar(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
+	public ResponseEntity<Categoria> salvar(@RequestBody @Valid CategoriaDTO categoriaDto) {
+		Categoria cat = categoriaService.salvar(new CategoriaBuilder().builderCategoria(categoriaDto));
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoriaDto.getId())
 				.toUri();
-		return ResponseEntity.created(uri).body(cat);
+		return ResponseEntity.created(uri).body(cat) ;
 	}
-	
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> alterar(@RequestBody @Valid Categoria categoria, @PathVariable Long id) {
-		Categoria cat = categoriaService.alterar(categoria, id);
+	public ResponseEntity<Categoria> alterar(@RequestBody @Valid CategoriaDTO categoriaDto, @PathVariable Long id) {
+		Categoria cat = categoriaService.alterar(new CategoriaBuilder().builderCategoria(categoriaDto), id);
 		return ResponseEntity.ok(cat);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleta(@PathVariable Long id) {
 		categoriaService.deleta(id);
