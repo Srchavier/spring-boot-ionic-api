@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.cursomc.builder.CategoriaBuilder;
 import com.cursomc.dto.CategoriaDTO;
 import com.cursomc.model.Categoria;
+import com.cursomc.model.Cliente;
 import com.cursomc.repository.CategoriaRepository;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
@@ -28,9 +29,13 @@ public class CategoriaService {
 	}
 
 	public Categoria alterar(@Valid Categoria categoria, Long id) {
-		buscarPorId(id);
-		categoria.setId(id);
-		return categoriaRepository.save(categoria);
+		Categoria categoriaSalva = buscarPorId(id);
+		alterarCategoria(categoria, categoriaSalva);
+		return categoriaRepository.save(categoriaSalva);
+	}
+	
+	private void alterarCategoria(@Valid Categoria categoria, Categoria categoriaSalva) {
+		categoriaSalva.setNome(categoria.getNome());
 	}
 
 	public void deleta(Long id) {
