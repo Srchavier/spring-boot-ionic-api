@@ -1,11 +1,16 @@
 package com.cursomc.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cursomc.entity.Categoria;
+import com.cursomc.builder.CategoriaBuilder;
+import com.cursomc.dto.CategoriaDTO;
+import com.cursomc.model.Categoria;
 import com.cursomc.repository.CategoriaRepository;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
@@ -31,9 +36,14 @@ public class CategoriaService {
 		categoriaRepository.deleteById(id);
 	}
 
-	public void buscarPorId(Long id) {
-		categoriaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
+	public Categoria buscarPorId(Long id) {
+		return categoriaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
 				"Objecto não encontrado id:" + id + " type:" + Categoria.class.getName()));
+	}
+
+	public List<CategoriaDTO> buscarTodos() {
+		List<Categoria> cat = categoriaRepository.findAll();
+		return cat.stream().map(obj -> new CategoriaBuilder().builder(obj)).collect(Collectors.toList());
 	}
 	
 	

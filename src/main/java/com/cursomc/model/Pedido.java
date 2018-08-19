@@ -1,4 +1,4 @@
-package com.cursomc.entity;
+package com.cursomc.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

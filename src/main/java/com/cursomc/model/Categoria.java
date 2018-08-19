@@ -1,4 +1,4 @@
-package com.cursomc.entity;
+package com.cursomc.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -9,32 +9,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * @author eduar
+ *
+ */
 @Entity
-@Table(name = "estado")
-public class Estado implements Serializable {
+@Table(name = "categoria")
+public class Categoria implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -6067337017843697716L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
+	@Size(max = 255)
 	private String nome;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="estado")
-	private Set<Cidade> cidades = new HashSet<>(0);
+	@ManyToMany(mappedBy="categorias")
+	private Set<Produto> produtos = new HashSet<>(0);
 
-	public Estado() {
+	public Categoria() {
 
 	}
-	public Estado(Long id, String nome) {
+
+	public Categoria(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -56,20 +60,20 @@ public class Estado implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Cidade> getCidades() {
-		return cidades;
+	public Set<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setCidades(Set<Cidade> cidades) {
-		this.cidades = cidades;
+	public void setProdutos(Set<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cidades == null) ? 0 : cidades.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -81,18 +85,20 @@ public class Estado implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Estado other = (Estado) obj;
-		if (cidades == null) {
-			if (other.cidades != null)
-				return false;
-		} else if (!cidades.equals(other.cidades))
-			return false;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
 		return true;
 	}
+
+
 
 }

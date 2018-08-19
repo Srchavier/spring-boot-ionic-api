@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cursomc.entity.Categoria;
-import com.cursomc.entity.Cliente;
+import com.cursomc.model.Categoria;
+import com.cursomc.model.Cliente;
 import com.cursomc.repository.ClienteRepository;
 import com.cursomc.service.exception.ObjectNotFoundException;
 

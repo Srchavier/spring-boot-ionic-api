@@ -2,7 +2,6 @@ package com.cursomc.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,31 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.cursomc.entity.Categoria;
-import com.cursomc.repository.CategoriaRepository;
+import com.cursomc.dto.CategoriaDTO;
+import com.cursomc.model.Categoria;
 import com.cursomc.service.CategoriaService;
-import com.cursomc.service.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaResource {
 
-	@Autowired
-	private CategoriaRepository categoriaRepository;
 
 	@Autowired
 	private CategoriaService categoriaService;
 
 	@GetMapping("/")
-	public ResponseEntity<List<Categoria>> listar() {
-		return ResponseEntity.ok().body(categoriaRepository.findAll());
+	public ResponseEntity<List<CategoriaDTO>> listar() {
+		return ResponseEntity.ok().body(categoriaService.buscarTodos());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> buscarPrId(@PathVariable Long id) {
-		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		return ResponseEntity.ok().body(categoria.orElseThrow(() -> new ObjectNotFoundException(
-				"Objecto não encontrado id:" + id + " type:" + Categoria.class.getName())));
+		Categoria categoria = categoriaService.buscarPorId(id);
+		return ResponseEntity.ok().body(categoria);
 
 	}
 

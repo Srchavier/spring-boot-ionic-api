@@ -1,31 +1,44 @@
-package com.cursomc.entity;
+package com.cursomc.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "cidade")
-public class Cidade implements Serializable {
+@Table(name = "estado")
+public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column
 	private String nome;
-	
-	@ManyToOne
-	@JoinColumn(name = "estado_id")
-	private Estado estado;
+
+	@JsonIgnore
+	@OneToMany(mappedBy="estado")
+	private Set<Cidade> cidades = new HashSet<>(0);
+
+	public Estado() {
+
+	}
+	public Estado(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
 
 	public Long getId() {
 		return id;
@@ -43,28 +56,19 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public Set<Cidade> getCidades() {
+		return cidades;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	public Cidade() {
-	}
-
-	public Cidade(Long id, String nome, Estado estado) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.estado = estado;
+	public void setCidades(Set<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cidades == null) ? 0 : cidades.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -77,7 +81,12 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Estado other = (Estado) obj;
+		if (cidades == null) {
+			if (other.cidades != null)
+				return false;
+		} else if (!cidades.equals(other.cidades))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -1,4 +1,4 @@
-package com.cursomc.entity;
+package com.cursomc.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
