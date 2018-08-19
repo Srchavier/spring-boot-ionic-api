@@ -2,7 +2,7 @@ package com.cursomc.enums;
 
 public enum TipoCliente {
 
-	PESSOAFISICA(1, "Pessoa física"), PESSOAJURIDICA(2, "Pessoa Juridica");
+	PESSOA_FISICA(1, "Pessoa física"), PESSOA_JURIDICA(2, "Pessoa Juridica");
 
 	private int cod;
 	private String descricao;

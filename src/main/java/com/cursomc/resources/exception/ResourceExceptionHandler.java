@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.cursomc.service.exception.Erro;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
 @ControllerAdvice
@@ -47,12 +48,11 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
-	
-	
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		
+
 		List<Erro> errors = criarListaDeErrors(ex.getBindingResult());
 		return handleExceptionInternal(ex, errors, headers, HttpStatus.BAD_REQUEST, request);
 	}
@@ -68,23 +68,4 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 		return erros;
 	}
 
-	public static class Erro {
-
-		private String mensagemUsuario;
-		private String mensagemDesenvolvedor;
-
-		public Erro(String mensagemUsuario, String mensagemDesenvolvimento) {
-			this.mensagemUsuario = mensagemUsuario;
-			this.mensagemDesenvolvedor = mensagemDesenvolvimento;
-		}
-
-		public String getMensagemUsuario() {
-			return mensagemUsuario;
-		}
-
-		public String getMensagemDesenvolvedor() {
-			return mensagemDesenvolvedor;
-		}
-
-	}
 }

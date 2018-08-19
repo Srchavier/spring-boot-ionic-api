@@ -16,9 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.Valid;
 
-import com.cursomc.dto.ClienteNewDTO;
 import com.cursomc.enums.TipoCliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -143,23 +141,30 @@ public class Cliente implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Cliente other = (Cliente) obj;
 		if (enderecos == null) {
-			if (other.enderecos != null)
+			if (other.enderecos != null) {
 				return false;
-		} else if (!enderecos.equals(other.enderecos))
+			}
+		} else if (!enderecos.equals(other.enderecos)) {
 			return false;
+		}
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		return true;
 	}
 
