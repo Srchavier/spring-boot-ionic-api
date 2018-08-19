@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.cursomc.builder.CategoriaBuilder;
 import com.cursomc.dto.CategoriaDTO;
 import com.cursomc.model.Categoria;
-import com.cursomc.model.Cliente;
 import com.cursomc.repository.CategoriaRepository;
 import com.cursomc.service.exception.ObjectNotFoundException;
 

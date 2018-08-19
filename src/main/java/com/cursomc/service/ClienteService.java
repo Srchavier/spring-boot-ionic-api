@@ -3,6 +3,7 @@ package com.cursomc.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	
+	@Transactional
 	public Cliente salvar(Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
