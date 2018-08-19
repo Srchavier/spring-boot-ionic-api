@@ -16,7 +16,7 @@ public class ClienteBuilder {
 	}
 
 	public Cliente builderCliente(ClienteDTO clienteDTO) {
-		return new Cliente(clienteDTO.getId(), clienteDTO.getEmail(), clienteDTO.getEmail(), null, null);
+		return new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
 	}
 
 	public Cliente builderClienteNewDto(@Valid ClienteNewDTO clienteNewDto) {

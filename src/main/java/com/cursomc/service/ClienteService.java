@@ -1,6 +1,5 @@
 package com.cursomc.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,13 +21,13 @@ import com.cursomc.service.exception.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-	
+
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
 		cliente = clienteRepository.save(cliente);
@@ -38,12 +37,10 @@ public class ClienteService {
 
 	public Cliente alterar(@Valid Cliente cliente, Long id) {
 		Cliente clienteSalvo = buscarPorId(id);
-		//BeanUtils.copyProperties(cliente, clienteSalvo, "id");
+		// BeanUtils.copyProperties(cliente, clienteSalvo, "id");
 		alterarCliente(cliente, clienteSalvo);
 		return clienteRepository.save(clienteSalvo);
 	}
-
-	
 
 	private void alterarCliente(@Valid Cliente cliente, Cliente clienteSalvo) {
 		clienteSalvo.setNome(cliente.getNome());
@@ -64,17 +61,15 @@ public class ClienteService {
 		List<Cliente> cat = clienteRepository.findAll();
 		return cat.stream().map(obj -> new ClienteBuilder().builder(obj)).collect(Collectors.toList());
 	}
-	
+
 	public Page<ClienteDTO> listaComPaginacao(Integer pagina, Integer numeroLinhas, String ordem, String direcao) {
 
 		PageRequest pageRequest = PageRequest.of(pagina, numeroLinhas, Direction.valueOf(direcao), ordem);
 
 		Page<Cliente> cliente = clienteRepository.findAll(pageRequest);
 
-		return (Page<ClienteDTO>) cliente.map(obj -> new ClienteBuilder().builder(obj));
+		return cliente.map(obj -> new ClienteBuilder().builder(obj));
 
 	}
-	
-	
 
 }
