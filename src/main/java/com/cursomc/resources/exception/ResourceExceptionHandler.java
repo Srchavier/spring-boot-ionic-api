@@ -57,7 +57,6 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, errors, headers, HttpStatus.BAD_REQUEST, request);
 	}
 
-	@SuppressWarnings("unused")
 	private List<Erro> criarListaDeErrors(BindingResult bindingResult) {
 		List<Erro> erros = new ArrayList<>();
 
