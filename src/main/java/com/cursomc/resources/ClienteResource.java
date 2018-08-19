@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cursomc.builder.ClienteBuilder;
 import com.cursomc.dto.ClienteDTO;
+import com.cursomc.dto.ClienteNewDTO;
 import com.cursomc.model.Cliente;
 import com.cursomc.service.ClienteService;
 
@@ -42,7 +43,6 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(cliente);
 	}
 
-
 	@GetMapping("/page")
 	public ResponseEntity<Page<ClienteDTO>> listarComPaginacao(
 			@RequestParam(value = "page", defaultValue = "0") Integer pagina,
@@ -54,9 +54,9 @@ public class ClienteResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Cliente> salvar(@RequestBody @Valid ClienteDTO ClienteDto) {
-		Cliente cat = clienteService.salvar(new ClienteBuilder().builderCliente(ClienteDto));
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ClienteDto.getId())
+	public ResponseEntity<Cliente> salvar(@RequestBody @Valid ClienteNewDTO ClienteNewDto) {
+		Cliente cat = clienteService.salvar(new ClienteBuilder().builderClienteNewDto(ClienteNewDto));
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(cat);
 	}

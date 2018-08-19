@@ -1,5 +1,6 @@
 package com.cursomc.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import com.cursomc.builder.ClienteBuilder;
 import com.cursomc.dto.ClienteDTO;
 import com.cursomc.model.Cliente;
 import com.cursomc.repository.ClienteRepository;
+import com.cursomc.repository.EnderecoRepository;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
 @Service
@@ -24,9 +26,14 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
-		return clienteRepository.save(cliente);
+		cliente = clienteRepository.save(cliente);
+		enderecoRepository.saveAll(cliente.getEnderecos());
+		return cliente;
 	}
 
 	public Cliente alterar(@Valid Cliente cliente, Long id) {
