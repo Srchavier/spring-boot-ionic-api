@@ -1,6 +1,7 @@
 package com.cursomc.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,7 +45,6 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>(0);
 
@@ -57,6 +57,10 @@ public class Pedido implements Serializable {
 		this.instance = instance;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 		this.cliente = cliente;
+	}
+
+	public BigDecimal getValorTotal() {
+		return itens.stream().map(x -> x.getSubTotal()).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	public Long getId() {
@@ -117,18 +121,23 @@ public class Pedido implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Pedido other = (Pedido) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		return true;
 	}
 
