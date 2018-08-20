@@ -11,15 +11,15 @@ import com.cursomc.model.Endereco;
 
 public class ClienteBuilder {
 
-	public ClienteDTO builder(Cliente cliente) {
+	public static ClienteDTO builder(Cliente cliente) {
 		return new ClienteDTO(cliente.getId(), cliente.getNome(), cliente.getEmail());
 	}
 
-	public Cliente builderCliente(ClienteDTO clienteDTO) {
+	public static Cliente builderCliente(ClienteDTO clienteDTO) {
 		return new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
 	}
 
-	public Cliente builderClienteNewDto(@Valid ClienteNewDTO clienteNewDto) {
+	public static Cliente builderClienteNewDto(@Valid ClienteNewDTO clienteNewDto) {
 		Cliente cli = new Cliente(null, clienteNewDto.getNome(), clienteNewDto.getEmail(), clienteNewDto.getCpfOuCnpj(),
 				TipoCliente.toEnum(clienteNewDto.getTipo()));
 		Cidade cid = new Cidade(clienteNewDto.getIdCidade(), null, null);

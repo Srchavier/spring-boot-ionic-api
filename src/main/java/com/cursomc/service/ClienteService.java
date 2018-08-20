@@ -59,7 +59,7 @@ public class ClienteService {
 
 	public List<ClienteDTO> buscarTodos() {
 		List<Cliente> cat = clienteRepository.findAll();
-		return cat.stream().map(obj -> new ClienteBuilder().builder(obj)).collect(Collectors.toList());
+		return cat.stream().map(obj -> ClienteBuilder.builder(obj)).collect(Collectors.toList());
 	}
 
 	public Page<ClienteDTO> listaComPaginacao(Integer pagina, Integer numeroLinhas, String ordem, String direcao) {
@@ -68,7 +68,7 @@ public class ClienteService {
 
 		Page<Cliente> cliente = clienteRepository.findAll(pageRequest);
 
-		return cliente.map(obj -> new ClienteBuilder().builder(obj));
+		return cliente.map(obj -> ClienteBuilder.builder(obj));
 
 	}
 

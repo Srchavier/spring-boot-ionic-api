@@ -55,15 +55,15 @@ public class CategoriaResource {
 
 	@PostMapping
 	public ResponseEntity<Categoria> salvar(@RequestBody @Valid CategoriaDTO categoriaDto) {
-		Categoria cat = categoriaService.salvar(new CategoriaBuilder().builderCategoria(categoriaDto));
+		Categoria cat = categoriaService.salvar(CategoriaBuilder.builderCategoria(categoriaDto));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoriaDto.getId())
 				.toUri();
-		return ResponseEntity.created(uri).body(cat) ;
+		return ResponseEntity.created(uri).body(cat);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Categoria> alterar(@RequestBody @Valid CategoriaDTO categoriaDto, @PathVariable Long id) {
-		Categoria cat = categoriaService.alterar(new CategoriaBuilder().builderCategoria(categoriaDto), id);
+		Categoria cat = categoriaService.alterar(CategoriaBuilder.builderCategoria(categoriaDto), id);
 		return ResponseEntity.ok(cat);
 	}
 

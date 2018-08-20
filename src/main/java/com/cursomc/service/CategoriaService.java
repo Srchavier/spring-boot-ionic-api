@@ -50,7 +50,7 @@ public class CategoriaService {
 
 	public List<CategoriaDTO> buscarTodos() {
 		List<Categoria> cat = categoriaRepository.findAll();
-		return cat.stream().map(obj -> new CategoriaBuilder().builder(obj)).collect(Collectors.toList());
+		return cat.stream().map(obj -> CategoriaBuilder.builder(obj)).collect(Collectors.toList());
 	}
 
 	public Page<CategoriaDTO> listaComPaginacao(Integer pagina, Integer numeroLinhas, String ordem, String direcao) {
@@ -59,7 +59,7 @@ public class CategoriaService {
 
 		Page<Categoria> cat = categoriaRepository.findAll(pageRequest);
 
-		return cat.map(obj -> new CategoriaBuilder().builder(obj));
+		return cat.map(obj -> CategoriaBuilder.builder(obj));
 
 	}
 

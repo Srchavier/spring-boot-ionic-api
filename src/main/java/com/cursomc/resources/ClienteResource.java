@@ -55,15 +55,14 @@ public class ClienteResource {
 
 	@PostMapping
 	public ResponseEntity<Cliente> salvar(@RequestBody @Valid ClienteNewDTO ClienteNewDto) {
-		Cliente cat = clienteService.salvar(new ClienteBuilder().builderClienteNewDto(ClienteNewDto));
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId())
-				.toUri();
+		Cliente cat = clienteService.salvar(ClienteBuilder.builderClienteNewDto(ClienteNewDto));
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).body(cat);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Cliente> alterar(@RequestBody @Valid ClienteDTO ClienteDto, @PathVariable Long id) {
-		Cliente cat = clienteService.alterar(new ClienteBuilder().builderCliente(ClienteDto), id);
+		Cliente cat = clienteService.alterar(ClienteBuilder.builderCliente(ClienteDto), id);
 		return ResponseEntity.ok(cat);
 	}
 

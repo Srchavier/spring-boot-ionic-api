@@ -5,11 +5,11 @@ import com.cursomc.model.Categoria;
 
 public class CategoriaBuilder {
 
-	public CategoriaDTO builder(Categoria categoria) {
+	public static CategoriaDTO builder(Categoria categoria) {
 		return new CategoriaDTO(categoria.getId(), categoria.getNome());
 	}
 
-	public Categoria builderCategoria(CategoriaDTO categoriaDto) {
+	public static Categoria builderCategoria(CategoriaDTO categoriaDto) {
 		return new Categoria(categoriaDto.getId(), categoriaDto.getNome());
 	}
 
