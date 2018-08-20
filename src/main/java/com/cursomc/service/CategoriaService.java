@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class CategoriaService {
 		alterarCategoria(categoria, categoriaSalva);
 		return categoriaRepository.save(categoriaSalva);
 	}
-	
+
 	private void alterarCategoria(@Valid Categoria categoria, Categoria categoriaSalva) {
 		categoriaSalva.setNome(categoria.getNome());
 	}
@@ -54,11 +55,11 @@ public class CategoriaService {
 
 	public Page<CategoriaDTO> listaComPaginacao(Integer pagina, Integer numeroLinhas, String ordem, String direcao) {
 
-		PageRequest pageRequest = PageRequest.of(pagina, numeroLinhas, Direction.valueOf(direcao), ordem);
+		Pageable pageRequest = PageRequest.of(pagina, numeroLinhas, Direction.valueOf(direcao), ordem);
 
 		Page<Categoria> cat = categoriaRepository.findAll(pageRequest);
 
-		return (Page<CategoriaDTO>) cat.map(obj -> new CategoriaBuilder().builder(obj));
+		return cat.map(obj -> new CategoriaBuilder().builder(obj));
 
 	}
 
