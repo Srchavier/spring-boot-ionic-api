@@ -44,8 +44,16 @@ public class ItemPedido implements Serializable {
 		return id.getPedido();
 	}
 
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
+	}
+
 	public Produto getProduto() {
 		return id.getProduto();
+	}
+
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
 	}
 
 	public BigDecimal getDesconto() {

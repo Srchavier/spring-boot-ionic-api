@@ -14,10 +14,15 @@ import javax.persistence.Table;
 
 import com.cursomc.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Table(name = "pagamento")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
+@JsonSubTypes({ @JsonSubTypes.Type(value = PagamentoComBoleto.class, name = "pagamentoComBoleto"),
+		@JsonSubTypes.Type(value = PagamentoComCartao.class, name = "pagamentoComCartao") })
 public abstract class Pagamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -78,18 +83,23 @@ public abstract class Pagamento implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Pagamento other = (Pagamento) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		return true;
 	}
 
