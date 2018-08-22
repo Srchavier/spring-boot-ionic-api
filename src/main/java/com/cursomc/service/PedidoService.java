@@ -37,6 +37,9 @@ public class PedidoService {
 	@Autowired
 	private ClienteService clienteService;
 
+	@Autowired
+	private EmailService emailService;
+
 	public Pedido salvar(@Valid Pedido pedido) {
 		pedido.setId(null);
 		pedido.setInstance(LocalDateTime.now());
@@ -59,7 +62,7 @@ public class PedidoService {
 		}
 
 		itemPedidoRepository.saveAll(pedido.getItens());
-		System.out.println(pedido.toString());
+		emailService.sendOrderConfirmationEmail(pedido);
 		return pedido;
 	}
 
