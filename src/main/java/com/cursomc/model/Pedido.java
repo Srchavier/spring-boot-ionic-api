@@ -2,8 +2,11 @@ package com.cursomc.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -139,6 +142,28 @@ public class Pedido implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		DateTimeFormatter aFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número:");
+		builder.append(getId());
+		builder.append(", instance: ");
+		builder.append(getInstance().format(aFormatter));
+		builder.append(", cliente= ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes:\n");
+		getItens().forEach(d -> {
+			builder.append(d.toString());
+		});
+		builder.append("\nValor total:\n");
+		builder.append(nf.format(getValorTotal()));
+		return builder.toString();
 	}
 
 }
