@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +54,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(categoriaService.listaComPaginacao(pagina, numeroLinhas, ordem, direcao));
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<Categoria> salvar(@RequestBody @Valid CategoriaDTO categoriaDto) {
 		Categoria cat = categoriaService.salvar(CategoriaBuilder.builderCategoria(categoriaDto));
@@ -61,12 +63,14 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(cat);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<Categoria> alterar(@RequestBody @Valid CategoriaDTO categoriaDto, @PathVariable Long id) {
 		Categoria cat = categoriaService.alterar(CategoriaBuilder.builderCategoria(categoriaDto), id);
 		return ResponseEntity.ok(cat);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleta(@PathVariable Long id) {
 		categoriaService.deleta(id);
