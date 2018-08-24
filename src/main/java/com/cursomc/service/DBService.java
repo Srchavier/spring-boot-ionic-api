@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cursomc.enums.EstadoPagamento;
+import com.cursomc.enums.PerfilCliente;
 import com.cursomc.enums.TipoCliente;
 import com.cursomc.model.Categoria;
 import com.cursomc.model.Cidade;
@@ -130,13 +131,21 @@ public class DBService {
 				TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("admin"));
 		clint1.getTelefones().addAll(Arrays.asList("985620178", "34675873"));
 
+		Cliente clint2 = new Cliente(null, "Ana costa", "duduhyx@gmail.com", "90652158968", TipoCliente.PESSOA_FISICA,
+				bCryptPasswordEncoder.encode("admin"));
+		clint1.getTelefones().addAll(Arrays.asList("985620178", "34675873"));
+		clint2.addPerfil(PerfilCliente.ADMIN);
+
 		Endereco e1 = new Endereco(null, "Rua flores", 300, "Apto 303", "Jardim", "3895546", clint1, cid1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", 105, "sala 800", "Centro", "389232", clint1, cid2);
 
+		Endereco e3 = new Endereco(null, "Rio de janeiro", 680, "sala 800", "Centro", "254887", clint2, cid2);
 		clint1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		clint2.getEnderecos().addAll(Arrays.asList(e3));
 
 		clienteRepository.save(clint1);
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.save(clint2);
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		Pedido ped1 = new Pedido(null, LocalDateTime.parse("01-08-2018 04:24", aFormatter), e1, clint1);
 		Pedido ped2 = new Pedido(null, LocalDateTime.parse("10-10-2018 04:24", aFormatter), e2, clint1);
