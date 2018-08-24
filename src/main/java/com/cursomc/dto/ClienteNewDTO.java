@@ -34,6 +34,9 @@ public class ClienteNewDTO implements Serializable {
 	private String complemento;
 
 	@NotEmpty
+	private String senha;
+
+	@NotEmpty
 	private String bairro;
 
 	@NotEmpty
@@ -152,6 +155,14 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setIdCidade(Long idCidade) {
 		this.idCidade = idCidade;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }

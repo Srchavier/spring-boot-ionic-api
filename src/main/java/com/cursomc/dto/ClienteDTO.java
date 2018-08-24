@@ -23,14 +23,17 @@ public class ClienteDTO implements Serializable {
 	@Email
 	private String email;
 
+	private String senha;
+
 	public ClienteDTO() {
 	}
 
-	public ClienteDTO(Long id, @NotEmpty @Size(max = 80, min = 5) String nome, @Email String email) {
+	public ClienteDTO(Long id, @NotEmpty @Size(max = 80, min = 5) String nome, @Email String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.senha = senha;
 	}
 
 	public Long getId() {
@@ -55,6 +58,14 @@ public class ClienteDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }

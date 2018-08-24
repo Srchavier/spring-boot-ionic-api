@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cursomc.enums.EstadoPagamento;
@@ -61,6 +62,9 @@ public class DBService {
 
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public void instantiateTestDatabase() {
 		DateTimeFormatter aFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -123,7 +127,7 @@ public class DBService {
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 
 		Cliente clint1 = new Cliente(null, "Maria silva", "eduardug.tinho@hotmail.com", "90652158968",
-				TipoCliente.PESSOA_FISICA);
+				TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("admin"));
 		clint1.getTelefones().addAll(Arrays.asList("985620178", "34675873"));
 
 		Endereco e1 = new Endereco(null, "Rua flores", 300, "Apto 303", "Jardim", "3895546", clint1, cid1);
