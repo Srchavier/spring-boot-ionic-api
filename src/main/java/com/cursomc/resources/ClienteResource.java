@@ -45,6 +45,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(cliente);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/page")
 	public ResponseEntity<Page<ClienteDTO>> listarComPaginacao(
 			@RequestParam(value = "page", defaultValue = "0") Integer pagina,
