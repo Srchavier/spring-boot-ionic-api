@@ -58,8 +58,7 @@ public class CategoriaResource {
 	@PostMapping
 	public ResponseEntity<Categoria> salvar(@RequestBody @Valid CategoriaDTO categoriaDto) {
 		Categoria cat = categoriaService.salvar(CategoriaBuilder.builderCategoria(categoriaDto));
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoriaDto.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).body(cat);
 	}
 
