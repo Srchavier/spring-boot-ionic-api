@@ -46,6 +46,12 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(cliente);
 	}
 
+	@GetMapping("/email")
+	public ResponseEntity<?> buscarPorId(@RequestParam(value = "value") String email) {
+		Cliente cliente = clienteService.buscarPorEmail(email);
+		return ResponseEntity.ok().body(cliente);
+	}
+
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/page")
 	public ResponseEntity<Page<ClienteDTO>> listarComPaginacao(
