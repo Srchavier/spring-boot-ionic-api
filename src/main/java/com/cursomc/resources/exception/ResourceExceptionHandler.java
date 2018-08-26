@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.cursomc.service.exception.AuthorizationException;
 import com.cursomc.service.exception.Erro;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
@@ -33,9 +34,18 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException ex, HttpServletRequest request) {
+
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), ex.getMessage(),
 				System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<StandardError> authorization(AuthorizationException ex, HttpServletRequest request) {
+
+		StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), ex.getMessage(),
+				System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
 	}
 
 	@ExceptionHandler({ DataIntegrityViolationException.class })

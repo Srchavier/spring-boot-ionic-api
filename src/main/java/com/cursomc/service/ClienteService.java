@@ -14,9 +14,12 @@ import org.springframework.stereotype.Service;
 
 import com.cursomc.builder.ClienteBuilder;
 import com.cursomc.dto.ClienteDTO;
+import com.cursomc.enums.PerfilCliente;
 import com.cursomc.model.Cliente;
 import com.cursomc.repository.ClienteRepository;
 import com.cursomc.repository.EnderecoRepository;
+import com.cursomc.security.UserSS;
+import com.cursomc.service.exception.AuthorizationException;
 import com.cursomc.service.exception.ObjectNotFoundException;
 
 @Service
@@ -53,6 +56,13 @@ public class ClienteService {
 	}
 
 	public Cliente buscarPorId(Long id) {
+
+		UserSS user = UserServices.authenticated();
+
+		if (user == null || !user.hasRole(PerfilCliente.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
 		return clienteRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
 				"Objecto não encontrado id:" + id + " type:" + Cliente.class.getName()));
 	}
