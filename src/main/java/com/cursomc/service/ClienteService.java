@@ -32,6 +32,9 @@ public class ClienteService {
 	@Value("${img.prefix.client.profile}")
 	private String prefixo;
 
+	@Value("${img.profile.size}")
+	private int tamanho;
+
 	@Autowired
 	private ClienteRepository clienteRepository;
 
@@ -42,7 +45,7 @@ public class ClienteService {
 	private S3Service s3Service;
 
 	@Autowired
-	private ImagemService ImagemService;
+	private ImagemService imagemService;
 
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
@@ -100,10 +103,13 @@ public class ClienteService {
 		if (user == null) {
 			throw new AuthorizationException("Acesso negado");
 		}
-		BufferedImage jpgImagem = ImagemService.getJpgImageFromFile(file);
+		BufferedImage jpgImagem = imagemService.getJpgImageFromFile(file);
+		jpgImagem = imagemService.cropImagem(jpgImagem);
+		jpgImagem = imagemService.redimensionarImagem(jpgImagem, tamanho);
+
 		String filename = prefixo + user.getId() + ".jpg";
 
-		return s3Service.uploadFile(ImagemService.getInputStream(jpgImagem, "jpg"), filename, "imagem");
+		return s3Service.uploadFile(imagemService.getInputStream(jpgImagem, "jpg"), filename, "imagem");
 
 	}
 
