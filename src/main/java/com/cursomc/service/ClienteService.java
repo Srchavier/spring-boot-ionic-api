@@ -57,7 +57,7 @@ public class ClienteService {
 
 	public Cliente buscarPorId(Long id) {
 
-		UserSS user = UserServices.authenticated();
+		UserSS user = UserService.authenticated();
 
 		if (user == null || !user.hasRole(PerfilCliente.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
