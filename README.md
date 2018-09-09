@@ -19,9 +19,5 @@
 # Spring boot ionic api
 
 
-configura nos arquivos aplication-dev application-prod e application.properties
-
-spring.mail.password="password"
-aws.access_key_id="key"
-aws.secret_access_key="password"
+configurar nos arquivos aplication-dev, application-prod, application-teste e application.properties
 
