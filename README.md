@@ -7,7 +7,7 @@
 ![Spring boot Version](https://img.shields.io/badge/mysql-5.7-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/hibernatecore-2.0.3-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/hibernatejava8-2.0.3-blue.svg)
-![Spring boot Version](https://img.shields.io/badge/jacksondatatype jsr310-2.0.3-blue.svg)
+![Spring boot Version](https://img.shields.io/badge/jacksondatatypejsr310-2.0.3-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/thymeleafextrasjava8time-2.0.3-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/jjwt-0.7.0-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/awsjavasdk-LATEST-blue.svg)
