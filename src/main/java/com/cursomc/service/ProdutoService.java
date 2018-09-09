@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +36,14 @@ public class ProdutoService {
 		return pod.stream().map(obj -> ProdutoBuilder.builder(obj)).collect(Collectors.toList());
 	}
 
-	public Page<ProdutoDTO> buscar(String nome, List<Long> ids, Integer pagina, Integer numeroLinhas, String ordem,
-			String direcao) {
+	public Page<ProdutoDTO> buscar(String nome, List<Long> ids, Integer page, Integer linesPerPage, String orderBy,
+			String direction) {
 
-		Pageable pageRequest = PageRequest.of(pagina, numeroLinhas, Direction.valueOf(direcao), ordem);
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		List<Categoria> categorias = categoriaRepository.findAllById(ids);
 
-		Page<Produto> pod = produtoRepository.findDistictByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
+		Page<Produto> pod = produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias,
+				pageRequest);
 
 		return pod.map(obj -> ProdutoBuilder.builder(obj));
 

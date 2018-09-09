@@ -73,61 +73,62 @@ public class DBService {
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
-		Categoria cat4 = new Categoria(null, "Eletônicos");
+		Categoria cat4 = new Categoria(null, "Eletrônicos");
 		Categoria cat5 = new Categoria(null, "Jardinagem");
 		Categoria cat6 = new Categoria(null, "Decoração");
 		Categoria cat7 = new Categoria(null, "Perfumaria");
 
-		Produto p1 = new Produto(null, "Computador", new BigDecimal(2000));
-		Produto p2 = new Produto(null, "Impressora", new BigDecimal(800));
-		Produto p3 = new Produto(null, "Mouse", new BigDecimal(80));
-		Produto p4 = new Produto(null, "Mesa de escritório", new BigDecimal(300));
-		Produto p5 = new Produto(null, "Toalha", new BigDecimal(50));
-		Produto p6 = new Produto(null, "Colcha", new BigDecimal(200));
-		Produto p7 = new Produto(null, "TV true color", new BigDecimal(1200));
-		Produto p8 = new Produto(null, "Roçadeira", new BigDecimal(800));
-		Produto p9 = new Produto(null, "Abajour", new BigDecimal(100));
-		Produto p10 = new Produto(null, "Pendente", new BigDecimal(180));
-		Produto p11 = new Produto(null, "Shampoo", new BigDecimal(90));
-		Produto p12 = new Produto(null, "Produto 12", new BigDecimal(90));
-		Produto p13 = new Produto(null, "Produto 13", new BigDecimal(90));
-		Produto p14 = new Produto(null, "Produto 14", new BigDecimal(80));
-		Produto p15 = new Produto(null, "Produto 15", new BigDecimal(90));
-		Produto p16 = new Produto(null, "Produto 16", new BigDecimal(90));
-		Produto p17 = new Produto(null, "Produto 17", new BigDecimal(90));
-		Produto p18 = new Produto(null, "Produto 18", new BigDecimal(90));
-		Produto p19 = new Produto(null, "Produto 19", new BigDecimal(90));
-		Produto p20 = new Produto(null, "Produto 20", new BigDecimal(90));
-		Produto p21 = new Produto(null, "Produto 21", new BigDecimal(90));
-		Produto p22 = new Produto(null, "Produto 22", new BigDecimal(90));
-		Produto p23 = new Produto(null, "Produto 23", new BigDecimal(90));
-		Produto p24 = new Produto(null, "Produto 24", new BigDecimal(90));
-		Produto p25 = new Produto(null, "Produto 25", new BigDecimal(90));
-		Produto p26 = new Produto(null, "Produto 26", new BigDecimal(90));
-		Produto p27 = new Produto(null, "Produto 27", new BigDecimal(90));
-		Produto p28 = new Produto(null, "Produto 28", new BigDecimal(90));
-		Produto p29 = new Produto(null, "Produto 29", new BigDecimal(90));
-		Produto p30 = new Produto(null, "Produto 30", new BigDecimal(90));
-		Produto p31 = new Produto(null, "Produto 31", new BigDecimal(90));
-		Produto p32 = new Produto(null, "Produto 32", new BigDecimal(90));
-		Produto p33 = new Produto(null, "Produto 33", new BigDecimal(90));
-		Produto p34 = new Produto(null, "Produto 34", new BigDecimal(90));
-		Produto p35 = new Produto(null, "Produto 35", new BigDecimal(90));
-		Produto p36 = new Produto(null, "Produto 36", new BigDecimal(90));
-		Produto p37 = new Produto(null, "Produto 37", new BigDecimal(90));
-		Produto p38 = new Produto(null, "Produto 38", new BigDecimal(90));
-		Produto p39 = new Produto(null, "Produto 39", new BigDecimal(90));
-		Produto p40 = new Produto(null, "Produto 40", new BigDecimal(90));
-		Produto p41 = new Produto(null, "Produto 41", new BigDecimal(90));
-		Produto p42 = new Produto(null, "Produto 42", new BigDecimal(90));
-		Produto p43 = new Produto(null, "Produto 43", new BigDecimal(90));
-		Produto p44 = new Produto(null, "Produto 44", new BigDecimal(90));
-		Produto p45 = new Produto(null, "Produto 45", new BigDecimal(90));
-		Produto p46 = new Produto(null, "Produto 46", new BigDecimal(90));
-		Produto p47 = new Produto(null, "Produto 47", new BigDecimal(90));
-		Produto p48 = new Produto(null, "Produto 48", new BigDecimal(90));
-		Produto p49 = new Produto(null, "Produto 49", new BigDecimal(90));
-		Produto p50 = new Produto(null, "Produto 50", new BigDecimal(90));
+		Produto p1 = new Produto(null, "Computador", new BigDecimal(2000.00));
+		Produto p2 = new Produto(null, "Impressora", new BigDecimal(800.00));
+		Produto p3 = new Produto(null, "Mouse", new BigDecimal(80.00));
+		Produto p4 = new Produto(null, "Mesa de escritório", new BigDecimal(300.00));
+		Produto p5 = new Produto(null, "Toalha", new BigDecimal(50.00));
+		Produto p6 = new Produto(null, "Colcha", new BigDecimal(200.00));
+		Produto p7 = new Produto(null, "TV true color", new BigDecimal(1200.00));
+		Produto p8 = new Produto(null, "Roçadeira", new BigDecimal(800.00));
+		Produto p9 = new Produto(null, "Abajour", new BigDecimal(100.00));
+		Produto p10 = new Produto(null, "Pendente", new BigDecimal(180.00));
+		Produto p11 = new Produto(null, "Shampoo", new BigDecimal(90.00));
+
+		Produto p12 = new Produto(null, "Produto 12", new BigDecimal(10.00));
+		Produto p13 = new Produto(null, "Produto 13", new BigDecimal(10.00));
+		Produto p14 = new Produto(null, "Produto 14", new BigDecimal(10.00));
+		Produto p15 = new Produto(null, "Produto 15", new BigDecimal(10.00));
+		Produto p16 = new Produto(null, "Produto 16", new BigDecimal(10.00));
+		Produto p17 = new Produto(null, "Produto 17", new BigDecimal(10.00));
+		Produto p18 = new Produto(null, "Produto 18", new BigDecimal(10.00));
+		Produto p19 = new Produto(null, "Produto 19", new BigDecimal(10.00));
+		Produto p20 = new Produto(null, "Produto 20", new BigDecimal(10.00));
+		Produto p21 = new Produto(null, "Produto 21", new BigDecimal(10.00));
+		Produto p22 = new Produto(null, "Produto 22", new BigDecimal(10.00));
+		Produto p23 = new Produto(null, "Produto 23", new BigDecimal(10.00));
+		Produto p24 = new Produto(null, "Produto 24", new BigDecimal(10.00));
+		Produto p25 = new Produto(null, "Produto 25", new BigDecimal(10.00));
+		Produto p26 = new Produto(null, "Produto 26", new BigDecimal(10.00));
+		Produto p27 = new Produto(null, "Produto 27", new BigDecimal(10.00));
+		Produto p28 = new Produto(null, "Produto 28", new BigDecimal(10.00));
+		Produto p29 = new Produto(null, "Produto 29", new BigDecimal(10.00));
+		Produto p30 = new Produto(null, "Produto 30", new BigDecimal(10.00));
+		Produto p31 = new Produto(null, "Produto 31", new BigDecimal(10.00));
+		Produto p32 = new Produto(null, "Produto 32", new BigDecimal(10.00));
+		Produto p33 = new Produto(null, "Produto 33", new BigDecimal(10.00));
+		Produto p34 = new Produto(null, "Produto 34", new BigDecimal(10.00));
+		Produto p35 = new Produto(null, "Produto 35", new BigDecimal(10.00));
+		Produto p36 = new Produto(null, "Produto 36", new BigDecimal(10.00));
+		Produto p37 = new Produto(null, "Produto 37", new BigDecimal(10.00));
+		Produto p38 = new Produto(null, "Produto 38", new BigDecimal(10.00));
+		Produto p39 = new Produto(null, "Produto 39", new BigDecimal(10.00));
+		Produto p40 = new Produto(null, "Produto 40", new BigDecimal(10.00));
+		Produto p41 = new Produto(null, "Produto 41", new BigDecimal(10.00));
+		Produto p42 = new Produto(null, "Produto 42", new BigDecimal(10.00));
+		Produto p43 = new Produto(null, "Produto 43", new BigDecimal(10.00));
+		Produto p44 = new Produto(null, "Produto 44", new BigDecimal(10.00));
+		Produto p45 = new Produto(null, "Produto 45", new BigDecimal(10.00));
+		Produto p46 = new Produto(null, "Produto 46", new BigDecimal(10.00));
+		Produto p47 = new Produto(null, "Produto 47", new BigDecimal(10.00));
+		Produto p48 = new Produto(null, "Produto 48", new BigDecimal(10.00));
+		Produto p49 = new Produto(null, "Produto 49", new BigDecimal(10.00));
+		Produto p50 = new Produto(null, "Produto 50", new BigDecimal(10.00));
 
 		cat1.getProdutos()
 				.addAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27,
@@ -174,9 +175,8 @@ public class DBService {
 		p49.getCategorias().add(cat1);
 		p50.getCategorias().add(cat1);
 
-		cat1.getProdutos().addAll(Arrays.asList(p2, p1, p3));
-
-		cat2.getProdutos().addAll(Arrays.asList(p2, p4, p1));
+		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
+		cat2.getProdutos().addAll(Arrays.asList(p2, p4));
 		cat3.getProdutos().addAll(Arrays.asList(p5, p6));
 		cat4.getProdutos().addAll(Arrays.asList(p1, p2, p3, p7));
 		cat5.getProdutos().addAll(Arrays.asList(p8));
@@ -195,72 +195,73 @@ public class DBService {
 		p10.getCategorias().addAll(Arrays.asList(cat6));
 		p11.getCategorias().addAll(Arrays.asList(cat7));
 
-		repository.saveAll(Arrays.asList(cat2, cat1, cat3, cat4, cat5, cat6, cat7));
+		repository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
+
 		produtoRepository.saveAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25,
-				p26, p27, p28, p29, p30, p31, p32, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47,
-				p48, p49, p50));
+				p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46,
+				p47, p48, p49, p50));
 
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
 
-		Cidade cid1 = new Cidade(null, "Uberlãndia", est1);
-		Cidade cid2 = new Cidade(null, "São Paulo", est2);
-		Cidade cid3 = new Cidade(null, "Campinas", est2);
+		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c2 = new Cidade(null, "São Paulo", est2);
+		Cidade c3 = new Cidade(null, "Campinas", est2);
 
-		est1.getCidades().addAll(Arrays.asList(cid1));
-		est1.getCidades().addAll(Arrays.asList(cid2, cid3));
+		est1.getCidades().addAll(Arrays.asList(c1));
+		est2.getCidades().addAll(Arrays.asList(c2, c3));
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
-		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente clint1 = new Cliente(null, "Maria silva", "eduardug.tinho@hotmail.com", "90652158968",
-				TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("admin"));
-		clint1.getTelefones().addAll(Arrays.asList("985620178", "34675873"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "nelio.cursos@gmail.com", "36378912377",
+				TipoCliente.PESSOA_FISICA, bCryptPasswordEncoder.encode("123"));
 
-		Cliente clint2 = new Cliente(null, "Ana costa", "duduhyx@gmail.com", "90652158968", TipoCliente.PESSOA_FISICA,
-				bCryptPasswordEncoder.encode("admin"));
-		clint1.getTelefones().addAll(Arrays.asList("985620178", "34675873"));
-		clint2.addPerfil(PerfilCliente.ADMIN);
+		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
-		Endereco e1 = new Endereco(null, "Rua flores", 300, "Apto 303", "Jardim", "3895546", clint1, cid1);
-		Endereco e2 = new Endereco(null, "Avenida Matos", 105, "sala 800", "Centro", "389232", clint1, cid2);
+		Cliente cli2 = new Cliente(null, "Ana Costa", "nelio.iftm@gmail.com", "31628382740", TipoCliente.PESSOA_FISICA,
+				bCryptPasswordEncoder.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("93883321", "34252625"));
+		cli2.addPerfil(PerfilCliente.ADMIN);
 
-		Endereco e3 = new Endereco(null, "Rio de janeiro", 680, "sala 800", "Centro", "254887", clint2, cid2);
-		clint1.getEnderecos().addAll(Arrays.asList(e1, e2));
-		clint2.getEnderecos().addAll(Arrays.asList(e3));
+		Endereco e1 = new Endereco(null, "Rua Flores", 300, "Apto 303", "Jardim", "38220834", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", 105, "Sala 800", "Centro", "38777012", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida Floriano", 2106, null, "Centro", "281777012", cli2, c2);
 
-		clienteRepository.save(clint1);
-		clienteRepository.save(clint2);
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
+
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
-		Pedido ped1 = new Pedido(null, LocalDateTime.parse("01-08-2018 04:24", aFormatter), e1, clint1);
-		Pedido ped2 = new Pedido(null, LocalDateTime.parse("10-10-2018 04:24", aFormatter), e2, clint1);
+		Pedido ped1 = new Pedido(null, LocalDateTime.parse("01-08-2018 04:24", aFormatter), e1, cli1);
+		Pedido ped2 = new Pedido(null, LocalDateTime.parse("10-10-2018 04:24", aFormatter), e2, cli1);
 
-		Pagamento pag1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
-		ped1.setPagamento(pag1);
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pagto1);
 
-		Pagamento pag2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, null,
-				LocalDate.parse("2019-01-01"));
-		ped2.setPagamento(pag2);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, LocalDate.parse("2019-01-01"),
+				null);
+		ped2.setPagamento(pagto2);
 
-		clint1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
-		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 
-		ItemPedido item1 = new ItemPedido(ped1, p1, new BigDecimal(0), 1, new BigDecimal(2000));
-		ItemPedido item2 = new ItemPedido(ped1, p3, new BigDecimal(0), 2, new BigDecimal(80));
-		ItemPedido item3 = new ItemPedido(ped2, p2, new BigDecimal(100), 1, new BigDecimal(800));
+		ItemPedido ip1 = new ItemPedido(ped1, p1, new BigDecimal(0.00), 1, new BigDecimal(2000.00));
+		ItemPedido ip2 = new ItemPedido(ped1, p3, new BigDecimal(0.00), 2, new BigDecimal(80.00));
+		ItemPedido ip3 = new ItemPedido(ped2, p2, new BigDecimal(100.00), 1, new BigDecimal(800.00));
 
-		ped1.getItens().addAll(Arrays.asList(item1, item2));
-		ped2.getItens().addAll(Arrays.asList(item3));
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
 
-		p1.getItens().addAll(Arrays.asList(item1));
-		p2.getItens().addAll(Arrays.asList(item3));
-		p3.getItens().addAll(Arrays.asList(item2));
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
 
-		itemPedidoRepository.saveAll(Arrays.asList(item1, item2, item3));
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }

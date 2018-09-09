@@ -1,7 +1,5 @@
 package com.cursomc.resources;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -24,21 +22,15 @@ public class ProdutoResource {
 	private ProdutoService produtoService;
 
 	@GetMapping()
-	public ResponseEntity<Page<ProdutoDTO>> listarComPaginacao(
-			@RequestParam(value = "nome", defaultValue = "0") String nome,
-			@RequestParam(value = "categorias", defaultValue = "0") String categorias,
-			@RequestParam(value = "page", defaultValue = "0") Integer pagina,
-			@RequestParam(value = "line", defaultValue = "24") Integer numeroLinhas,
-			@RequestParam(value = "orderBy", defaultValue = "nome") String ordem,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direcao) {
+	public ResponseEntity<Page<ProdutoDTO>> findPage(@RequestParam(value = "nome", defaultValue = "") String nome,
+			@RequestParam(value = "categorias", defaultValue = "") String categorias,
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 
 		return ResponseEntity.ok().body(produtoService.buscar(URL.decodeParam(nome), URL.decodeIntList(categorias),
-				pagina, numeroLinhas, ordem, direcao));
-	}
-
-	@GetMapping("/")
-	public ResponseEntity<List<ProdutoDTO>> listar() {
-		return ResponseEntity.ok().body(produtoService.buscarTodos());
+				page, linesPerPage, orderBy, direction));
 	}
 
 	@GetMapping("/{id}")

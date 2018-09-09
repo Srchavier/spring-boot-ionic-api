@@ -1,8 +1,8 @@
 package com.cursomc.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,8 +31,8 @@ public class Categoria implements Serializable {
 	@Size(max = 255)
 	private String nome;
 
-	@ManyToMany(mappedBy="categorias")
-	private Set<Produto> produtos = new HashSet<>(0);
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos = new ArrayList<>();
 
 	public Categoria() {
 
@@ -60,11 +60,11 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Produto> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(Set<Produto> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 
@@ -79,26 +79,31 @@ public class Categoria implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Categoria other = (Categoria) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		if (nome == null) {
-			if (other.nome != null)
+			if (other.nome != null) {
 				return false;
-		} else if (!nome.equals(other.nome))
+			}
+		} else if (!nome.equals(other.nome)) {
 			return false;
+		}
 		return true;
 	}
-
-
 
 }

@@ -39,7 +39,7 @@ public class Produto implements Serializable {
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-	private Set<Categoria> categorias = new HashSet<>(0);
+	private List<Categoria> categorias = new ArrayList<>();
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
@@ -54,13 +54,13 @@ public class Produto implements Serializable {
 		this.nome = nome;
 		this.valor = valor;
 	}
-	
+
 	@JsonIgnore
 	public List<Pedido> getPedidos() {
 		List<Pedido> lista = new ArrayList<>();
 		itens.forEach(x -> lista.add(x.getPedido()));
 		return lista;
-		
+
 	}
 
 	public Long getId() {
@@ -87,11 +87,11 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
-	public Set<Categoria> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(Set<Categoria> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
@@ -114,23 +114,30 @@ public class Produto implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Produto other = (Produto) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		if (nome == null) {
-			if (other.nome != null)
+			if (other.nome != null) {
 				return false;
-		} else if (!nome.equals(other.nome))
+			}
+		} else if (!nome.equals(other.nome)) {
 			return false;
+		}
 		return true;
 	}
 
