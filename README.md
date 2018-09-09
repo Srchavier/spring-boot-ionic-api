@@ -1,6 +1,6 @@
 ![Java Version](https://img.shields.io/badge/Java-1.8-red.svg)
 ![Spring boot Version](https://img.shields.io/badge/spring%20boot-2.0.3-blue.svg)
-![Spring dev tools Version](https://img.shields.io/badge/spring%boot%20dev%20tools-2.0.3-blue.svg)
+![Spring dev tools Version](https://img.shields.io/badge/spring%20boot%20dev%20tools-2.0.3-blue.svg)
 ![Spring thymeleaf Version](https://img.shields.io/badge/spring%20boot%20thymeleaf-2.0.3-blue.svg)
 ![thumeleaf extras Version](https://img.shields.io/badge/thymeleaf%20extras%20java8%20time-2.0.3-blue.svg)
 ![Spring boot mail Version](https://img.shields.io/badge/spring%20boot%20starter%20mail-2.0.3-blue.svg)
