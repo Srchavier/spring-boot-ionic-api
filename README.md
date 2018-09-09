@@ -14,7 +14,14 @@
 ![Commons io Version](https://img.shields.io/badge/commons%20io-LATEST-blue.svg)
 ![commons lang3 boot Version](https://img.shields.io/badge/commons%20lang3-2.0.3-blue.svg)
 ![Imgscalr boot Version](https://img.shields.io/badge/imgscalr-4.2-blue.svg)
-![Maven Version](https://img.shields.io/badge/maven-3.3.9-blue.svg)
+![Maven Version](https://img.shields.io/badge/maven-3.5.4-blue.svg)
 
 # Spring boot ionic api
+
+
+configura nos arquivos aplication-dev application-prod e application.properties
+
+spring.mail.password="password"
+aws.access_key_id="key"
+aws.secret_access_key="password"
 
