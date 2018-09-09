@@ -15,8 +15,7 @@
 ![Spring boot Version](https://img.shields.io/badge/commonslang3-2.0.3-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/imgscalr-4.2-blue.svg)
 ![Spring boot Version](https://img.shields.io/badge/maven-3.3.9-blue.svg)
-
-
 ![Maven Version](https://img.shields.io/badge/Maven-3.3-7036ed.svg)
+
 # Spring boot ionic api
 
