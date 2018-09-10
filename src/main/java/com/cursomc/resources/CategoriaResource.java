@@ -25,6 +25,10 @@ import com.cursomc.dto.CategoriaDTO;
 import com.cursomc.model.Categoria;
 import com.cursomc.service.CategoriaService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaResource {
@@ -37,6 +41,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(categoriaService.buscarTodos());
 	}
 
+	@ApiOperation(value = "Busca por id")
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> buscarPrId(@PathVariable Long id) {
 		Categoria categoria = categoriaService.buscarPorId(id);
@@ -69,6 +74,9 @@ public class CategoriaResource {
 		return ResponseEntity.ok(cat);
 	}
 
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Não é possível excluir uma categoria que possui produtos"),
+			@ApiResponse(code = 404, message = "Código inexistente") })
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleta(@PathVariable Long id) {
